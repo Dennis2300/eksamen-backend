@@ -1,6 +1,5 @@
 package dat3.eksamen.entity;
 
-import dat3.eksamen.entity.EnumTypes.ResultType;
 import jakarta.persistence.*;
 import lombok.Data;
 
