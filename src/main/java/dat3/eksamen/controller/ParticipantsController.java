@@ -37,4 +37,10 @@ public class ParticipantsController {
         Participants updated = participantsService.updateParticipant(id, updatedParticipant);
         return ResponseEntity.ok(updated);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteParticipant(@PathVariable Integer id) {
+        participantsService.deleteParticipant(id);
+        return ResponseEntity.ok("Participant deleted successfully");
+    }
 }

@@ -4,6 +4,7 @@ import dat3.eksamen.entity.Participants;
 import dat3.eksamen.repository.ParticipantsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -55,6 +56,14 @@ public class ParticipantsService {
             updatedParticipant.setId(id);
             return participantsRepository.save(updatedParticipant);
         });
+    }
+
+    public void deleteParticipant(Integer id) {
+        try {
+            participantsRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not delete the given participant");
+        }
     }
 
 }
