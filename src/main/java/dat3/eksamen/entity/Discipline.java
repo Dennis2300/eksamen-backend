@@ -1,18 +1,16 @@
 package dat3.eksamen.entity;
 
 import dat3.eksamen.entity.EnumTypes.ResultType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity(name = "disciplines")
 public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
-
-    private ResultType resultType;
+    @Column(name = "discipline_name")
+    private String disciplineName;
 }

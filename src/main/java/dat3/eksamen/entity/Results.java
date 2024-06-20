@@ -1,13 +1,12 @@
 package dat3.eksamen.entity;
 
 import dat3.eksamen.entity.EnumTypes.ResultType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Date;
 
+@Data
 @Entity(name = "results")
 public class Results {
 
@@ -15,6 +14,8 @@ public class Results {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "result_type")
+    @Enumerated(EnumType.STRING)
     private ResultType resultType;
 
     private Date date;
