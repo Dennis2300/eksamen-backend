@@ -1,5 +1,6 @@
 package dat3.eksamen.controller;
 
+import dat3.eksamen.dto.ParticipantDto;
 import dat3.eksamen.entity.Participants;
 import dat3.eksamen.service.ParticipantsService;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +28,13 @@ public class ParticipantsController {
         return participantsService.getParticipantById(id);
     }
 
+
     @PostMapping("/add")
-    public Participants addParticipant(@RequestBody Participants participant) {
-        return participantsService.addParticipant(participant);
+    public ResponseEntity<Participants> addParticipant(@RequestBody ParticipantDto participantDTO) {
+        Participants participant = participantsService.addParticipant(participantDTO);
+        return ResponseEntity.ok(participant);
     }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Participants> updateParticipant(@PathVariable Integer id, @RequestBody Participants updatedParticipant) {
@@ -41,6 +45,6 @@ public class ParticipantsController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteParticipant(@PathVariable Integer id) {
         participantsService.deleteParticipant(id);
-        return ResponseEntity.ok("Participant deleted successfully");
+        return ResponseEntity.ok("Participant deleted");
     }
 }
