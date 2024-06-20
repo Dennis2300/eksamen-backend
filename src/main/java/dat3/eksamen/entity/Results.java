@@ -21,4 +21,12 @@ public class Results {
     private Date date;
 
     private Integer result;
+
+    @ManyToOne
+    @JoinColumn(name = "participant_id")
+    private Participants participant;
+
+    @ManyToOne
+    @JoinColumn(name = "discipline_id")
+    private Discipline discipline;
 }

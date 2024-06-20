@@ -23,7 +23,7 @@ public class DisciplineController {
     }
 
     @GetMapping("/{id}")
-    public Discipline getDisciplineById(@PathVariable int id) {
+    public Discipline getDisciplineById(@PathVariable Integer id) {
         return disciplineService.getDisciplineById(id);
     }
 

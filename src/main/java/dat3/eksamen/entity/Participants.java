@@ -4,6 +4,9 @@ import dat3.eksamen.entity.EnumTypes.Gender;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity(name = "participants")
 public class Participants {
@@ -27,4 +30,12 @@ public class Participants {
 
     @Column(name = "club")
     private String club;
+
+    @ManyToMany
+    @JoinTable(
+            name = "participants_disciplines",
+            joinColumns = @JoinColumn(name = "participant_id"),
+            inverseJoinColumns = @JoinColumn(name = "discipline_id")
+    )
+    private Set<Discipline> disciplines = new HashSet<>();
 }
