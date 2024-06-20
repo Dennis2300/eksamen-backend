@@ -56,12 +56,8 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/user-with-role")).permitAll() //Clients can create a user for themself
 
             //This is for demo purposes only, and should be removed for a real system
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/info")).permitAll()
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/recipes")).permitAll()
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/recipes/*")).permitAll()
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/categories")).permitAll()
-
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/categories/*")).hasAuthority("ADMIN")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/participants")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/participants")).permitAll()
 
             //Allow index.html for anonymous users
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/index.html")).permitAll()
