@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface ParticipantsRepository extends JpaRepository<Participants, Integer>{
+    Participants findByFirstNameAndLastName(String firstName, String lastName);
 }

@@ -1,7 +1,13 @@
 package dat3.eksamen.service;
 
+import dat3.eksamen.dto.ResultsDto;
+import dat3.eksamen.entity.Discipline;
+import dat3.eksamen.entity.Participants;
 import dat3.eksamen.entity.Results;
+import dat3.eksamen.repository.DisciplineRepository;
+import dat3.eksamen.repository.ParticipantsRepository;
 import dat3.eksamen.repository.ResultsRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,9 +20,13 @@ import java.util.List;
 public class ResultsService {
 
     private final ResultsRepository resultsRepository;
+    private final ParticipantsRepository participantsRepository;
+    private final DisciplineRepository disciplineRepository;
 
-    public ResultsService(ResultsRepository resultsRepository) {
+    public ResultsService(ResultsRepository resultsRepository, ParticipantsRepository participantsRepository, DisciplineRepository disciplineRepository) {
         this.resultsRepository = resultsRepository;
+        this.participantsRepository = participantsRepository;
+        this.disciplineRepository = disciplineRepository;
     }
 
     public List<Results> getResults() {
@@ -35,13 +45,32 @@ public class ResultsService {
         }
     }
 
-    public Results addResult(Results result) {
-        try {
-            return resultsRepository.save(result);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not add the given result");
+    @Transactional
+    public Results addResult(ResultsDto resultDTO) {
+        Results result = new Results();
+        result.setResultType(resultDTO.getResultType());
+        result.setDate(resultDTO.getDate());
+        result.setResult(resultDTO.getResult());
+
+        Participants participant = participantsRepository.findByFirstNameAndLastName(
+                resultDTO.getParticipantFirstName(),
+                resultDTO.getParticipantLastName()
+        );
+        if (participant == null) {
+            throw new RuntimeException("Participant not found");
         }
+        result.setParticipant(participant);
+
+        Discipline discipline = disciplineRepository.findByDisciplineName(resultDTO.getDisciplineName());
+        if (discipline == null) {
+            throw new RuntimeException("Discipline not found");
+        }
+        result.setDiscipline(discipline);
+
+        return resultsRepository.save(result);
     }
+
+
 
     public Results updateResult(Integer id, Results updatedResult) {
         return resultsRepository.findById(id).map(result -> {

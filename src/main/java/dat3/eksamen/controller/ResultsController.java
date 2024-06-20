@@ -1,5 +1,6 @@
 package dat3.eksamen.controller;
 
+import dat3.eksamen.dto.ResultsDto;
 import dat3.eksamen.entity.Results;
 import dat3.eksamen.service.ResultsService;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,9 @@ public class ResultsController {
     }
 
     @PostMapping("/add")
-    public Results addResult(@RequestBody Results result) {
-        return resultsService.addResult(result);
+    public ResponseEntity<Results> addResult(@RequestBody ResultsDto resultDTO) {
+        Results result = resultsService.addResult(resultDTO);
+        return ResponseEntity.ok(result);
     }
 
     @PutMapping("/update/{id}")
