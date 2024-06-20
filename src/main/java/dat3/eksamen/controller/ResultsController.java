@@ -13,11 +13,9 @@ import java.util.List;
 @RequestMapping("/api/results")
 public class ResultsController {
 
-    private final ResultsRepository resultsRepository;
     private final ResultsService resultsService;
 
-    public ResultsController(ResultsRepository resultsRepository, ResultsService resultsService) {
-        this.resultsRepository = resultsRepository;
+    public ResultsController(ResultsService resultsService) {
         this.resultsService = resultsService;
     }
 
