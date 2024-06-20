@@ -42,4 +42,19 @@ public class ParticipantsService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not add the given participant");
         }
     }
+
+    public Participants updateParticipant(Integer id, Participants updatedParticipant) {
+        return participantsRepository.findById(id).map(participant -> {
+            participant.setFirstName(updatedParticipant.getFirstName());
+            participant.setLastName(updatedParticipant.getLastName());
+            participant.setAge(updatedParticipant.getAge());
+            participant.setGender(updatedParticipant.getGender());
+            participant.setClub(updatedParticipant.getClub());
+            return participantsRepository.save(participant);
+        }).orElseGet(() -> {
+            updatedParticipant.setId(id);
+            return participantsRepository.save(updatedParticipant);
+        });
+    }
+
 }
