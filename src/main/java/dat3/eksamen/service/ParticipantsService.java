@@ -34,4 +34,12 @@ public class ParticipantsService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not find the given participant");
         }
     }
+
+    public Participants addParticipant(Participants participant) {
+        try {
+            return participantsRepository.save(participant);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not add the given participant");
+        }
+    }
 }
