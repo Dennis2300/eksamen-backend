@@ -28,7 +28,7 @@ public class ParticipantsService {
         }
     }
 
-    public Participants getParticipantById(int id) {
+    public Participants getParticipantById(Integer id) {
         try {
             return participantsRepository.findById(id).orElseThrow();
         } catch (Exception e) {

@@ -72,6 +72,10 @@ public class SecurityConfig {
 
             //Results endpoints
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/results")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/results/{id}")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/results/add")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT, "/api/results/update/{id}")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/api/results/delete/{id}")).permitAll()
 
             //Allow index.html for anonymous users
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/index.html")).permitAll()
