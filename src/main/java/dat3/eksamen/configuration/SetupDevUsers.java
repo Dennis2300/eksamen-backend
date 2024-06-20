@@ -1,4 +1,4 @@
-package dat3.recipe.configuration;
+package dat3.eksamen.configuration;
 
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
@@ -54,20 +54,10 @@ public class SetupDevUsers implements ApplicationRunner {
         System.out.println("**** ** ON YOUR REMOTE DATABASE                 ******************************");
         System.out.println();
         System.out.println("******************************************************************************");
-        UserWithRoles user1 = new UserWithRoles("user1", pwEncoder.encode(passwordUsedByAll), "user1@a.dk");
-        UserWithRoles user2 = new UserWithRoles("user2", pwEncoder.encode(passwordUsedByAll), "user2@a.dk");
-        UserWithRoles user3 = new UserWithRoles("user3", pwEncoder.encode(passwordUsedByAll), "user3@a.dk");
-        UserWithRoles user4 = new UserWithRoles("user4", pwEncoder.encode(passwordUsedByAll), "user4@a.dk");
-        UserWithRoles user5 = new UserWithRoles("user5", pwEncoder.encode(passwordUsedByAll), "user5@a.dk");
-        user1.addRole(roleUser);
-        user1.addRole(roleAdmin);
-        user2.addRole(roleUser);
-        user3.addRole(roleAdmin);
-        user5.addRole(roleUser);
+        UserWithRoles user1 = new UserWithRoles("admin", pwEncoder.encode(passwordUsedByAll), "admin1@a.dk");
+
+
         userWithRolesRepository.save(user1);
-        userWithRolesRepository.save(user2);
-        userWithRolesRepository.save(user3);
-        userWithRolesRepository.save(user4);
-        userWithRolesRepository.save(user5);
+
     }
 }
