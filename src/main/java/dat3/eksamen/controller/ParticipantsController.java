@@ -3,6 +3,7 @@ package dat3.eksamen.controller;
 import dat3.eksamen.entity.Participants;
 import dat3.eksamen.service.ParticipantsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class ParticipantsController {
     @GetMapping
     public List<Participants> getParticipants() {
         return participantsService.getParticipants();
+    }
+
+    @GetMapping("/{id}")
+    public Participants getParticipantById(@PathVariable int id) {
+        return participantsService.getParticipantById(id);
     }
 }

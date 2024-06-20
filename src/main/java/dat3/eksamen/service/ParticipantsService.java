@@ -25,6 +25,13 @@ public class ParticipantsService {
         } catch (Exception e) {
          throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not find participants");
         }
+    }
 
+    public Participants getParticipantById(int id) {
+        try {
+            return participantsRepository.findById(id).orElseThrow();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not find the given participant");
+        }
     }
 }
