@@ -65,6 +65,10 @@ public class SecurityConfig {
 
             //Disciplines endpoints
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/disciplines")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/disciplines/{id}")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/disciplines/add")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT, "/api/disciplines/update/{id}")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/api/disciplines/delete/{id}")).permitAll()
 
             //Results endpoints
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/results")).permitAll()
