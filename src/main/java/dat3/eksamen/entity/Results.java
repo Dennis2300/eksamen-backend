@@ -22,11 +22,11 @@ public class Results {
 
     private Integer result;
 
-    @ManyToOne
+    @ManyToOne // Many results to one participant
     @JoinColumn(name = "participant_id")
     private Participants participant;
 
-    @ManyToOne
+    @ManyToOne // Many results to one discipline
     @JoinColumn(name = "discipline_id")
     private Discipline discipline;
 }
